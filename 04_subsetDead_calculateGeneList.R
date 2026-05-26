@@ -1,4 +1,8 @@
-Seurat_reso = FC2
+# ================= #
+# Subset dead cells #
+# ================= #
+
+Seurat_reso = combined
 head(Seurat_reso@meta.data)
 min(Seurat_reso@meta.data$nCount_RNA)
 min(Seurat_reso@meta.data$nFeature_RNA) 
@@ -7,7 +11,6 @@ max(Seurat_reso@meta.data$percent.mt)
 # [1] 1000.008
 # [1] 401
 # [1] 19.99997
-
 
 RESO="RNA_snn_res.1.4"
 u=Seurat_reso@meta.data
@@ -62,8 +65,6 @@ Idents(FC)=RESO
 table(FC@active.ident)
 
 # # check visually in which clusters you have high % mito and low %ribo
-# Clusters: 19,11,27,29 (parts)
-# ranges:
 # sub= subset(FC, idents = c("19","11","27","29")) #  cells
 #  head(sub@meta.data,2)
 #  median(sub@meta.data$percent.mt)  
@@ -71,7 +72,6 @@ table(FC@active.ident)
 #  median(sub@meta.data$percent.ribo)  
 #  [1] 6.780482
 #  
-#  try: 
 # keep: pct mito <14.1 and  ribo >6.8 
 FC
 Idents(FC) = "RNA_snn_res.1.4"
@@ -97,20 +97,6 @@ dev.off()
 ORGANISM="Human"
 FC=FCfiltered
 
-saveRDS(FC,"rds_nodead_noDoublets_292315cells.rds")
-#for (resolution in c("0.4","0.6","0.8","1","1.2","1.4","1.6")){
-resolution="1.4"
-Seurat_reso <- SetIdent(object = FC, value = paste0('RNA_snn_res.',resolution))
-library(future)
-plan("multicore", workers = 8)   
-options(future.globals.maxSize = 100000 * 1024^2) 
-
-if(ORGANISM=="Mouse"){                                       
-    genes.use <- grep(pattern = "^Rp[sl][[:digit:]]|^Rplp[[:digit:]]|^Rpsa",rownames(Seurat_reso), value=TRUE, invert=TRUE) #get list of non-ribosomal genes 
-} else { 
-    genes.use <- grep(pattern = "^RP[SL][[:digit:]]|^RPLP[[:digit:]]|^RPSA",rownames(Seurat_reso), value=TRUE, invert=TRUE) #get list of non-ribosomal genes 
-}
-
 
 # ======================================================== #
 # FindAllMarkers - generate gene lists for each resolution #
@@ -129,7 +115,6 @@ if(ORGANISM=="Mouse"){
 } else { 
     genes.use <- grep(pattern = "^RP[SL][[:digit:]]|^RPLP[[:digit:]]|^RPSA",rownames(Seurat_reso), value=TRUE, invert=TRUE) #get list of non-ribosomal genes 
 }
-
 
 Seurat.markers <- FindAllMarkers(Seurat_reso,test.use="wilcox",  min.pct = 0.1, logfc.threshold = 0.25, features=genes.use) # no ribo genes
 write.table(Seurat.markers, paste0("Combined_res.",resolution,"_wilcox_markers_unannotated_Clusters.txt"),col.names=NA, sep="\t")
