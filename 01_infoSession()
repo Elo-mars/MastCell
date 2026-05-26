@@ -3,7 +3,7 @@ Platform: x86_64-conda-linux-gnu (64-bit)
 Running under: Rocky Linux 9.6 (Blue Onyx)
 
 Matrix products: default
-BLAS/LAPACK: /vsc-hard-mounts/leuven-data/323/vsc32378/miniconda_2025/miniconda3/envs/GBO24/lib/libopenblasp-r0.3.25.so;  LAPACK version 3.11.0
+BLAS/LAPACK: ..../lib/libopenblasp-r0.3.25.so;  LAPACK version 3.11.0
 
 locale:
  [1] LC_CTYPE=en_US.utf-8       LC_NUMERIC=C              
