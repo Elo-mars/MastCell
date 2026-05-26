@@ -1,13 +1,13 @@
 
 ```r
 library(Seurat)
-PROJECT="/path/Figure_IBS"
+PROJECT="/path/"
 setwd(PROJECT)
-seu_object = readRDS("Figure_IBS.rds")
+seu_object = readRDS("xxx.rds")
 
 # if you need to downsample
 Idents(seu_object) <- 'Cluster'
-cell.list <- WhichCells(seu_object, idents = levels(seu_object@meta.data$Cluster), downsample = 4000) # here, for example, we go to 4000 cells per cluster max
+cell.list <- WhichCells(seu_object, idents = levels(seu_object@meta.data$Cluster), downsample = 16500) # here, for example, we go to 16500 cells per cluster max
 
 downsampled <- seu_object[, cell.list]
 
@@ -67,7 +67,7 @@ pyscenic aucell \
 
 ```r
 library(Seurat)
-PROJECT="/path/Figure_IBS/SCENIC/"
+PROJECT="/path/xxx/SCENIC/"
 setwd(PROJECT)
 seu_object = readRDS("downsampled.rds")
 output_path=paste0(PROJECT)
