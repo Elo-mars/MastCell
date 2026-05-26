@@ -28,7 +28,7 @@ other attached packages:
 [17] forcats_1.0.1      stringr_1.6.0      purrr_1.2.2        readr_2.2.0       
 [21] tidyr_1.3.2        tibble_3.3.1       tidyverse_2.0.0    cowplot_1.2.0     
 [25] ggplot2_4.0.3      future_1.70.0      dplyr_1.1.4        plyr_1.8.9        
-[29] Seurat_4.0.2       sp_2.2-1          
+[29] Seurat_4.0.2       sp_2.2-1           gprofiler2_0.2.3
 
 loaded via a namespace (and not attached):
   [1] RcppAnnoy_0.0.23            splines_4.3.2              
