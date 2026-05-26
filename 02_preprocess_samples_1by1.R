@@ -1,9 +1,9 @@
-PROJECT="/staging/leuven/stg_00075/Project/210531_Hind_rectal_CD45_IBS"
+PROJECT="/path/project"
 # sample name of the directory where the data is
-SAMPLE="GC121179_SI-GA-H9" 
+SAMPLE="sample_name" 
 samplename=SAMPLE
 ORGANISM="Human"
-name="PIN_1745"
+name="PIN_xxx"
 subDir<-paste0("Result_",SAMPLE)
 dir.create(file.path(PROJECT,"/sample1_by_1/", subDir), showWarnings = FALSE)
 opath_s<-paste0(PROJECT,"/sample1_by_1/",subDir,"/")
